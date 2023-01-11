@@ -8,7 +8,6 @@ collegeId: {ObjectId, ref to college model, isDeleted: {boolean, default: false}
 
 const ObjectId = mongoose.Schema.Types.ObjectId
 
-
 const internSchema = new mongoose.Schema({
 
 name: {
@@ -39,7 +38,7 @@ default:false
 }
 }, 
 {
-    timestamps:true
+  timestamps:true
 })
 
 module.exports = mongoose.model('intern' ,internSchema )
