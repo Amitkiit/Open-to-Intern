@@ -56,7 +56,7 @@ const {name , email , mobile, collegeName} = data
     }
     
      const getCollegeId = await collegeModel.findOne({name : data.collegeName})
-     data.collegeId = getCollegeId["_id"]
+     data.collegeId = getCollegeId._id
     
      const saveInterns = await internModel.create(data)
 
@@ -69,3 +69,4 @@ const {name , email , mobile, collegeName} = data
     return res.status(500).send({status : false , msg : error.message})
 }
 }
+

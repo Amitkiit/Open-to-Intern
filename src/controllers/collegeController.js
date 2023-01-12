@@ -33,7 +33,6 @@ if(!validator.validateName(name)) {
   return res.status(400).send({status : false, msg : "please provide correct name"})
 }
 
-fullName = data.fullName = fullName.trim();
 if(!validator.validatefullname(fullName)){
   return res.status(400).send({status:false , msg:"please enter valid full name"})
 }
@@ -47,11 +46,12 @@ const uniqueName = await collegeModel.findOne({name:data.name})
        if(uniqueName){
  return res.status(400).send({status: false , msg: " name is already exist"})
 }
+
      
   const saveCollege = await collegeModel.create(data)
 
   const result = await collegeModel.findById(saveCollege._id).select({ _id: 0, createdAt: 0, updatedAt:0,__v: 0});
-  res.status(201).send({status:true , msg:result})
+  res.status(201).send({status:true ,data:result})
 
 }catch (error) {
 
@@ -67,12 +67,12 @@ exports.getCollegeData =async function(req,res){
 
  try {
 
-   let collegeName=req.query.name
+   let collegeName=req.query.collegeName
    if(!collegeName || collegeName.name == "" ){
     return res.status(400).send({status:false , msg: "provide college name in query"})
    }
 
-   let getCollegeName= await  collegeModel.findOne({name:collegeName}).select({name:1,fullName:1,logoLink:1})
+   let getCollegeName= await  collegeModel.findOne({name:collegeName})
  
 if(!getCollegeName){
     return res.status(404).send({status: false , msg: "no data found"})
@@ -92,3 +92,14 @@ if(!getCollegeName){
    return res.status(500).send({status : false, msg : error.message})
  }
 }
+
+
+
+
+
+
+
+
+
+
+
