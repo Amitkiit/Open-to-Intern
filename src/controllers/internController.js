@@ -6,6 +6,8 @@ const validator = require("../validator/validator")
 exports.createInterns = async function(req,res){
 try {
 
+    res.setHeader("Access-Control-Allow-Origin","*")
+    
 const data = req.body
 
       if(Object.keys(data).length ==0){

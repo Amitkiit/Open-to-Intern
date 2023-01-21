@@ -14,7 +14,7 @@ router.post('/functionup/interns',internController.createInterns)
 router.get('/functionup/collegeDetails', collegeController.getCollegeData)
 
 router.all('*/',(req,res)=>{
-    res.send(400).send({status:false,message:"path invalid"})
+    res.status(400).send({status:false,message:"path invalid"})
 }
 
 )
